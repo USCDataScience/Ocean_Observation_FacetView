@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>FacetView - Ocean Obsservation Database</title>
+
+    <!-- callouts -->
+    <link rel="stylesheet" href="callouts.css">
+
+    <!--<script type="text/javascript" src="vendor/jquery/1.7.1/jquery-1.7.1.min.js"></script>-->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+
+    <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.light.min.css">
+    <script type="text/javascript" src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="vendor/linkify/1.0/jquery.linkify-1.0-min.js"></script>
+
+    <link rel="stylesheet" href="vendor/jquery-ui-1.8.18.custom/jquery-ui-1.8.18.custom.css">
+    <script type="text/javascript" src="vendor/jquery-ui-1.8.18.custom/jquery-ui-1.8.18.custom.min.js"></script>
+
+    <script type="text/javascript" src="vendor/jquery/1.7.1/jquery.js"></script>
+
+    <script type="text/javascript" src="ocean.jquery.facetview.js"></script>
+
+    <link rel="stylesheet" href="css/facetview.css">
+
+    <link rel="stylesheet" href="css/style.css">
+
+
+    <script type="text/javascript">
+        jQuery(document).ready(function ($) {
+            $('.facet-view-simple').facetview({
+                search_url: "http://polar.usc.edu/solr/searchable2/query",
+                search_index: "solr",
+                linkify: false,
+                default_operator: "AND",
+                display_images: false,
+                searchwrap_start: "<div id='facetview_results'>",
+                searchwrap_end: "</div>",
+                resultwrap_start: "<div class='bs-callout bs-callout-primary'>",
+                resultwrap_end: "</div>",
+                highlight_fields: ["text"],
+                highlight_pre: "<mark><strong>",
+                highlight_post: "</mark></strong>",
+                initialsearch: true,
+                search_sortby: [
+                    {'display':'Date added','field':'tstamp'},
+                    {'display':'Title','field':'title'},
+                    {'display':'Host','field':'host'},
+                    {'display':'Segment','field':'segment'}
+                ],
+                result_display: [
+                    [
+                        {
+                            pre: "<a target='_blank' href='",
+                            field: "url",
+                            post: "'>"
+                        },
+                        {
+                            pre: "<h4>",
+                            field: "title",
+                            alternative_field: "id",
+                            post: "</h4>"
+                        },
+                        {
+                            pre: "</a>",
+                            post: ""
+                        },
+                        {
+                            pre: "<p>Date Added: ",
+                            field: "tstamp",
+                            post: "</p>"
+                        },
+                    ]
+                ],
+                facets: [
+                    {
+                        field: "tstamp",
+                        order: "term",
+                        display: "Date Added",
+                    },
+                    {
+                        field: "location_name_s",
+                        order: "term",
+                        display: "Location Name",
+                        size: 2,
+                        mincount: 1
+                    },
+                    {
+                        field: "title",
+                        display: "Topic",
+                        order: "count",
+                        size: 2,
+                        mincount: 1
+                    },
+                    {
+                        field: "id",
+                        display: "ID",
+                        order: "count",
+                        size: 2,
+                        mincount: 1
+                    },
+                    {
+                        field: "url",
+                        display: "URL",
+                        order: "count",
+                        size: 2,
+                        mincount: 1
+                    }
+                ],
+                paging: {
+                    from: 0,
+                    size: 10
+                }
+            });
+        });
+    </script>
+</head>
+
+<body>
+    
+    <div style="background-color:#7bceeb;">
+
+ <table height="100%" width="100%" cellpadding="0" cellspacing="0" border="0">
+   <tr>
+     <td valign="top" align="center" background="ocean.jpg" style="background-repeat:repeat; background-size:cover;"> 
+
+    <div class="container" style="width:80%">
+        <div class="content">
+            <div class="page-header">
+                <h3>FacetView Search for Ocean Observation</h3>
+            </div>
+            <div class="facet-view-simple"></div>
+        </div>
+    </div>
+    </td>
+   </tr>
+ </table>
+ <!--[if gte mso 9]>
+</v:textbox>
+</v:rect>
+<![endif]-->
+</div>
+</body>
+</html>
