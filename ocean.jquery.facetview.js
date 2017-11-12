@@ -1369,9 +1369,10 @@ if (!Array.prototype.indexOf) {
                 url: url_1,
                 data: qrystr,
                 processData: false,
-                dataType: options.datatype,
-                jsonp: "json.wrf",
-                success: showresults
+                //dataType: options.datatype,
+                //jsonp: "json.wrf",
+                success: showresults,
+		crossDomain: true
             });
         };
 
@@ -1554,7 +1555,7 @@ if (!Array.prototype.indexOf) {
         if ( options.sharesave_link ) {
             thefacetview += '<a class="btn facetview_sharesave" title="share or save this search" style="margin:0 0 21px 5px;" href=""><i class="icon-share-alt"></i></a>';
             thefacetview += '<div class="facetview_sharesavebox alert alert-info" style="display:none;"> \
-                <button type="button" class="facetview_sharesave close">Ã—</button> \
+                <button type="button" class="facetview_sharesave close">Ãƒâ€”</button> \
                 <p>Share or save this search:</p> \
                 <textarea class="facetview_sharesaveurl" style="width:100%;height:100px;">http://' + window.location.host +
                 window.location.pathname + '?source=' + options.querystring + '</textarea> \
